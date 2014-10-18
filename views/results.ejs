@@ -24,14 +24,14 @@
                 <div class="control-group">
                     <label class="control-label" for="sentence">#Suspected BS vs. Total words</label>
                     <div class="controls">
-                        <p><%= Math.floor(data.buzz.ratio*100)/100%> %</p>
+                        <p><%= Math.floor(data.ratio*100)/100%> %</p>
                     </div>
                 </div>
 
                 <div class="control-group">
                     <label class="control-label" for="sentence">Flesch-Kincaid ratio</label>
                     <div class="controls">
-                        <p><%= Math.floor(data.fleschKincaid*100)/100%></p>
+                        <p><%= Math.floor(data['flesch-kincaid']*100)/100%></p>
                     </div>
                 </div>
 
@@ -40,7 +40,7 @@
                     <div class="controls">
                         <!--<p><%= Math.floor(data.fleschKincaid*100)/100%></p>-->
                         <ul>
-                            <% data.buzz.suspects.forEach(function(suspect){%>
+                            <% data.buzzwords.forEach(function(suspect){%>
                                 <li><%=suspect%></li>
                             <%})%>
                             </ul>
