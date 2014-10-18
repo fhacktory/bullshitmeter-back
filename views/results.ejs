@@ -20,6 +20,12 @@
                 <!-- Form Name -->
                 <legend style="border-bottom:0">Results</legend>
 
+                <div class="control-group">
+                    <label class="control-label" for="sentence">Grade</label>
+                    <div class="controls">
+                        <p><%= Math.floor(data.grade*100)/100 %> </p>
+                    </div>
+                </div>
                 <!-- Text input-->
                 <div class="control-group">
                     <label class="control-label" for="sentence">#Suspected BS vs. Total words</label>
