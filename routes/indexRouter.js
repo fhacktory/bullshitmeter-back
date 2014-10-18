@@ -27,7 +27,7 @@ passport.deserializeUser(function (obj, done) {
 });
 
 router.get('/', function(req, res, next){
-    res.render('scoreMeForm');
+    res.render('scoreMeForm', {title:config.APP_TITLE});
 });
 
 router.get('/score-me', function(req, res, next){
