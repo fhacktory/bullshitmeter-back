@@ -34,6 +34,10 @@ router.get('/score-me', function(req, res, next){
     res.json({score:indexController.scorePhrase(req.body.phrase)});
 });
 
+router.get('/soundupload', function(req, res, next){
+    res.render('soundUploadForm', {title:config.APP_TITLE});
+});
+
 router.post('/sound', function(req, res, next){
 	console.log('files :' + req.files);
     res.json(indexController.receiveSound(req.body));

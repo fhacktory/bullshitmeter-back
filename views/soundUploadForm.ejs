@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
+    <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css"/>
+    <script src="/jquery/dist/jquery.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <div class="row clearfix">
+        <div class="col-md-4 column">
+        </div>
+        <div class="col-md-4 column center-collumn">
+            <!--<p>Welcome to <%= title %></p>-->
+            <h1><%= title %></h1>
+
+            <form method="POST" enctype="multipart/form-data" action="/sound">
+                <input type="file" name="thumbnail">
+                <input type="submit">
+            </form>
+
+        </div>
+        <div class="col-md-4 column">
+        </div>
+    </div>
+</div>
+
+
+</body>
+
+</html>
