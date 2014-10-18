@@ -8,7 +8,7 @@ describe('AmIBuzzing', function () {
         //action
         var actual = buzzWord.amIBuzzing('some random sentence with unicorns in it');
         //assert
-        assert.equal(actual, 0);
+        assert.equal(actual.length, 0);
     });
 
     it('should return 3 if 3 buzzwords are found', function(){
@@ -17,7 +17,7 @@ describe('AmIBuzzing', function () {
         //action
         var actual = buzzWord.amIBuzzing('some random sentence with unicorns that grow under headlights and paradigm');
         //assert
-        assert.equal(actual, 3);
+        assert.equal(actual.length, 3);
     });
 
     it('should detect custom words added by the app', function(){
@@ -26,7 +26,7 @@ describe('AmIBuzzing', function () {
         //action
         var actual = buzzWord.amIBuzzing('some random sentence with synergie and agile');
         //assert
-        assert.equal(actual, 2);
+        assert.equal(actual.length, 2);
     });
 });
 
@@ -37,7 +37,7 @@ describe('BuzzPerTotalWords', function(){
        //action
        var actual = buzzWord.buzzPerTotalwords('some random sentence with no particular words');
        //assert
-       assert.equal(actual, 0);
+       assert.equal(actual.ratio, 0);
    });
 
     it('should give a 1 rading if there are only buzzwords', function(){
@@ -46,6 +46,17 @@ describe('BuzzPerTotalWords', function(){
         //action
         var actual = buzzWord.buzzPerTotalwords('synergie');
         //assert
-        assert.equal(actual, 1);
+        assert.equal(actual.ratio, 1);
+    });
+
+    it('should return the buzz ratio and the suspected buzzwords in the same object', function(){
+        //setup
+        var buzzWord = new BuzzDetector();
+        //action
+        var actual = buzzWord.buzzPerTotalwords('synergie des rétroprojecteurs');
+        //assert
+        assert.equal(actual.ratio, 0.5);
+        assert.equal(actual.suspects.length, 1);
+        assert.equal(actual.suspects[0], 'synergie');
     });
 });

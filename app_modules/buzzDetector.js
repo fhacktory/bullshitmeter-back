@@ -16,13 +16,15 @@ BuzzDetector.prototype.amIBuzzing = function (sentence) {
     var buzzWords = _.filter(words, function (word) {
         return(buzzword.is(word));
     });
-    return buzzWords.length;
+    return buzzWords;
 };
 
 BuzzDetector.prototype.buzzPerTotalwords = function(sentence){
     var cleanedWords = cleanupUtils.removeStopWords(sentence);
     var totalBuzz = this.amIBuzzing(sentence);
-    return totalBuzz / cleanedWords.split(' ').length;
+    var computedRatio = (totalBuzz.length / cleanedWords.split(' ').length);
+    var result = {ratio:computedRatio, suspects:totalBuzz};
+    return result;
 };
 
 module.exports = BuzzDetector;

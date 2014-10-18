@@ -12,7 +12,7 @@ IndexController.prototype.scorePhrase = function (sentence) {
 IndexController.prototype.sentenceGrading = function (req) {
     var fleschKincaid = new SentenceGradeLevel(req.body.sentence);
     var gradingDetails = {
-        buzzPerWords: buzzDetector.buzzPerTotalwords(req.body.sentence), fleschKincaid:fleschKincaid.grade()
+        buzz: buzzDetector.buzzPerTotalwords(req.body.sentence), fleschKincaid:fleschKincaid.grade()
     };
     return gradingDetails;
 };
