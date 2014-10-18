@@ -10,6 +10,10 @@ IndexController.prototype.scorePhrase = function (sentence) {
     return buzzDetector.amIBuzzing(sentence);
 };
 
+IndexController.prototype.receiveSound = function (sound) {
+    return JSON.stringify({"status": "ok"});
+};
+
 IndexController.prototype.sentenceGrading = function(){
   var sentenceGradeLevel = new SentenceGradeLevel();
 

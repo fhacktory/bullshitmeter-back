@@ -31,6 +31,10 @@ router.get('/', function(req, res, next){
 });
 
 router.get('/score-me', function(req, res, next){
+    res.json({score:indexController.receiveSound(req.body.sound)});
+});
+
+router.post('/sound', function(req, res, next){
     res.json({score:indexController.scorePhrase(req.body.phrase)});
 });
 
