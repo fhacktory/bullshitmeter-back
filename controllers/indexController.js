@@ -1,25 +1,25 @@
 var SentenceGradeLevel = require('../app_modules/sentenceGradeLevel');
 var buzzDetector = new(require('../app_modules/buzzDetector'))();
+var speechApi = new(require('../app_modules/googleSpeechApi'))();
+var fs = require('fs');
 
 var IndexController = function () {
-
 };
 
 IndexController.prototype.scorePhrase = function (sentence) {
     return buzzDetector.buzzPerTotalwords(sentence);
 };
 
-IndexController.prototype.receiveSound = function (sound, files) {
-    var sound = files['soundFile'];
 
-    //console.log('sound='+sound)
-    //TODO : this is broken
-    fs.writeFile("/tmp/voice.m4a", sound, {encoding : "binary"}, function(err) {
-        if(err) {
-            console.log(err);
-        }
-    });
-    return JSON.stringify({"status": "ok"});
+IndexController.prototype.receiveSound = function (sound, files) {
+  var soundPath = files['myUpload']['path'];
+  speechApi.readSound(soundPath, function(err, recognizedText) {
+    if(err) {
+      console.log(err);
+    }
+
+    return JSON.stringify({"text": recognizedText});
+  });
 };
 
 IndexController.prototype.sentenceGrading = function (req) {
