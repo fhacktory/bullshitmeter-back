@@ -10,6 +10,8 @@ var session = require('express-session');
 var passport = require('passport');
 var rs = require('connect-mongo')(session);
 var routes = require('./routes/indexRouter');
+var multer = require('multer');
+var formidable = require('formidable');
 
 var app = express();
 
@@ -20,6 +22,8 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 app.use(logger('dev'));
+//app.use(bodyParser({uploadDir:'./uploads'}));
+//app.use(multer({dest:'./uploads'}));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());

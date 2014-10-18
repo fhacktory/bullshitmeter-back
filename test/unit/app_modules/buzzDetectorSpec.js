@@ -28,6 +28,24 @@ describe('AmIBuzzing', function () {
         //assert
         assert.equal(actual.length, 2);
     });
+
+    it('should detect custom composed buzzwords', function(){
+        //setup
+        var buzzWord = new BuzzDetector();
+        //action
+        var actual = buzzWord.amIBuzzing('société de l\'information');
+        //assert
+        assert.equal(actual.length, 1);
+    });
+
+    it('should detect custom composed buzzwords and a single buzzword', function(){
+        //setup
+        var buzzWord = new BuzzDetector();
+        //action
+        var actual = buzzWord.amIBuzzing('société de l\'information des entreprises du monde agile');
+        //assert
+        assert.equal(actual.length, 2);
+    });
 });
 
 describe('BuzzPerTotalWords', function(){

@@ -24,8 +24,15 @@ IndexController.prototype.receiveSound = function (sound, files) {
 
 IndexController.prototype.sentenceGrading = function (req) {
     var fleschKincaid = new SentenceGradeLevel(req.body.sentence);
+
+    var buzz = buzzDetector.buzzPerTotalwords(req.body.sentence);
+    var fkGrade = fleschKincaid.grade()
     var gradingDetails = {
-        buzz: buzzDetector.buzzPerTotalwords(req.body.sentence), fleschKincaid:fleschKincaid.grade()
+        buzzwords:buzz.suspects,
+        ratio:buzz.ratio,
+        grade:Math.min(buzz.ratio*fkGrade, 20),
+        'flesch-kincaid':fkGrade,
+        recognized_text:req.body.sentence
     };
     return gradingDetails;
 };

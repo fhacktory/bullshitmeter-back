@@ -22,13 +22,4 @@ describe('CleanupUtils - Remove Stop Words', function () {
         assert.equal(actual, 'correct horse battery staple');
     });
 
-//    it('should delete punctuation marks', function(){
-//        //setup
-//        var cleanup = new cleanupUtils();
-//        var sentence = 'correct,()!horse.battery>staple#';
-//        //action
-//        var actual = cleanup.removeStopWords(sentence);
-//        //assert
-//        assert.equal(actual, 'correct horse battery staple');
-//    });
 });
