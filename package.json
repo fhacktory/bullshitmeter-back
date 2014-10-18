@@ -27,7 +27,8 @@
     "passport": "0.2.1",
     "q": "0.9.6",
     "serve-favicon": "~2.1.5",
-    "syllable": "^0.1.0"
+    "syllable": "^0.1.0",
+      "formidable": "~1.0.15"
   },
   "devDependencies": {
     "chai": "~1.9.1",

@@ -33,9 +33,16 @@ router.get('/', function(req, res, next){
 router.get('/score-me', function(req, res, next){
     res.json({score:indexController.receiveSound(req.body.sound)});
 });
-
+var formidable = require('formidable');
 router.post('/sound', function(req, res, next){
-    res.json({score:indexController.scorePhrase(req.body.phrase)});
+    var form = new formidable.IncomingForm();
+    form.parse(req, function(err, fields, files) {
+        //console.log(files);
+        //res.writeHead(200, {'content-type': 'text/plain'});
+//        res.write('received upload:\n\n');
+//        res.end(util.inspect({fields: fields, files: files}));
+        res.json(indexController.receiveSound(fields, files));
+    });
 });
 
 router.post('/score-me', function(req, res, next){
