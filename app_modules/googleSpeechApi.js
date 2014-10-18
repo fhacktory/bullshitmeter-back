@@ -5,7 +5,17 @@ var exec = require('child_process').exec;
 var GoogleSpeechApi = function(){
 };
 
+GoogleSpeechApi.prototype.parseGoogleResponse = function(response){
+  response = '{"result":[]}\r\n{"result":[{"alternative":[{"transcript":"ok on enregistre un texte en moins de 30 secondes pour faire un test épisode devrait suffir"},{"transcript":"ok on enregistre un texte en moins de 30 secondes pour faire un test de épisode devrait suffir"},{"transcript":"ok on enregistre un texte en moins de 30 secondes pour faire un test épisode devrait suffire"},{"transcript":"ok on enregistre un texte en moins de 30 secondes pour faire un test 2 épisode devrait suffir"},{"transcript":"ok on enregistre un text en moins de 30 secondes pour faire un test épisode devrait suffir"}],"final":true}],"result_index":0}'
+
+  results = response.split("\r\n");
+  result = JSON.parse(results[1]).result[0].alternative[0].transcript
+  return result;
+};
+
+
 GoogleSpeechApi.prototype.readSound = function(soundPath, callback){
+  var self = this;
   //convert m4a into wav
 	exec("ffmpeg -y -i "+ soundPath +" -ar 16000 -acodec pcm_s16le -ac 1 tmp/file.wav", function (error, stdout, stderr) {
     if(stderr) {
@@ -21,7 +31,7 @@ GoogleSpeechApi.prototype.readSound = function(soundPath, callback){
       console.log("Called Google API with stdout ="+stdout);
       console.log("is error ="+isError);
 
-      callback(stderr, stdout);
+      callback(stderr, self.parseGoogleResponse(stdout));
     });
   });
 };

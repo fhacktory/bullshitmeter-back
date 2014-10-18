@@ -14,7 +14,6 @@ IndexController.prototype.scorePhrase = function (sentence) {
 IndexController.prototype.receiveSound = function (sound, files) {
   var soundPath = files['myUpload']['path'];
   speechApi.readSound(soundPath, function(err, recognizedText) {
-    
     return JSON.stringify({"text": recognizedText});
   });
 };

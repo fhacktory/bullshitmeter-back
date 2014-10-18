@@ -35,10 +35,11 @@ router.get('/score-me', function(req, res, next){
 });
 var formidable = require('formidable');
 router.post('/sound', function(req, res, next){
-    var form = new formidable.IncomingForm();
-    form.parse(req, function(err, fields, files) {
-        res.json(indexController.receiveSound(fields, files));
-    });
+  var form = new formidable.IncomingForm();
+  form.parse(req, function(err, fields, files) {
+    //FIXME: on répond avant la fin des callback. Tester de faire un res.write puis res.end dans les callback ?
+    res.json(indexController.receiveSound(fields, files));
+  });
 });
 
 router.post('/score-me', function(req, res, next){
