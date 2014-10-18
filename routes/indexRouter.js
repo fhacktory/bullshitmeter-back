@@ -38,4 +38,13 @@ router.post('/sound', function(req, res, next){
     res.json({score:indexController.scorePhrase(req.body.phrase)});
 });
 
+router.post('/score-me', function(req, res, next){
+    var gradeData = indexController.sentenceGrading(req);
+    if(req.body.client == 'web'){
+        res.render('results', {title:config.APP_TITLE, data:gradeData})
+    } else {
+        res.json(gradeData);
+    }
+});
+
 module.exports = router;

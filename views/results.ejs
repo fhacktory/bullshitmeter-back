@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
+    <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css"/>
+    <script src="/jquery/dist/jquery.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <div class="row clearfix">
+        <div class="col-md-4 column">
+        </div>
+        <div class="col-md-4 column center-collumn">
+            <!--<p>Welcome to <%= title %></p>-->
+            <h1><%= title %></h1>
+
+            <fieldset>
+
+                <!-- Form Name -->
+                <legend style="border-bottom:0">Results</legend>
+
+                <!-- Text input-->
+                <div class="control-group">
+                    <label class="control-label" for="sentence">#Suspected BS vs. Total words</label>
+                    <div class="controls">
+                        <p><%= Math.floor(data.buzz.ratio*100)/100%> %</p>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="sentence">Flesch-Kincaid ratio</label>
+                    <div class="controls">
+                        <p><%= Math.floor(data.fleschKincaid*100)/100%></p>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="sentence">Suspected buzzwords used</label>
+                    <div class="controls">
+                        <!--<p><%= Math.floor(data.fleschKincaid*100)/100%></p>-->
+                        <ul>
+                            <% data.buzz.suspects.forEach(function(suspect){%>
+                                <li><%=suspect%></li>
+                            <%})%>
+                            </ul>
+                    </div>
+                </div>
+
+            </fieldset>
+
+        </div>
+        <div class="col-md-4 column">
+        </div>
+    </div>
+</div>
+
+
+</body>
+
+</html>

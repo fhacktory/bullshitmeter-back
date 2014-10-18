@@ -24,7 +24,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(__dirname+'/public'));
-app.use(express.static(__dirname+'/documentation'));
+app.use(express.static(__dirname+'/bower_components'));
 app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(session({ secret: 'Some Secret !!!', key: 'sid'}));
 app.use(passport.initialize());
