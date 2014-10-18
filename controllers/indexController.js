@@ -1,17 +1,16 @@
 var buzzwords = require('buzzwords');
 var _ = require('lodash');
 var SentenceGradeLevel = require('../app_modules/sentenceGradeLevel');
+var BuzzDetector = require('../app_modules/buzzDetector');
 
 var IndexController = function () {
+    var detector = new BuzzDetector();
+
 };
 
-IndexController.prototype.scorePhrase = function (phrase) {
-    var endScore = 0;
-    //diacritics / punctuation removal before ?
-    var words = phrase.split(' ');
-    _.forEach(words, function(word){
-//        buzzword.is(word) ? endScore+=wordFoundScore;
-    });
+IndexController.prototype.scorePhrase = function (sentence) {
+    var buzzDetector = new BuzzDetector();
+    return buzzDetector.amIBuzzing(sentence);
 };
 
 IndexController.prototype.sentenceGrading = function(){
