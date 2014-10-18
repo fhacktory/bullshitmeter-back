@@ -1,7 +1,8 @@
 var fleschKincaid = require('flesch-kincaid');
 var syllable = require('syllable');
+var cleanupUtils = new (require('../utils/cleanupUtils'))();
 
-var SentenceGradeLevel = function(sentence){this.sentence = sentence};
+var SentenceGradeLevel = function(sentence){this.sentence = cleanupUtils.removeStopWords(sentence)};
 
 SentenceGradeLevel.prototype.grade = function(){
     var syllable_count=0;
