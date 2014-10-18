@@ -29,3 +29,23 @@ describe('AmIBuzzing', function () {
         assert.equal(actual, 2);
     });
 });
+
+describe('BuzzPerTotalWords', function(){
+   it('should give a 0 ratio if no buzzword is detected', function(){
+       //setup
+       var buzzWord = new BuzzDetector();
+       //action
+       var actual = buzzWord.buzzPerTotalwords('some random sentence with no particular words');
+       //assert
+       assert.equal(actual, 0);
+   });
+
+    it('should give a 1 rading if there are only buzzwords', function(){
+        //setup
+        var buzzWord = new BuzzDetector();
+        //action
+        var actual = buzzWord.buzzPerTotalwords('synergie');
+        //assert
+        assert.equal(actual, 1);
+    });
+});

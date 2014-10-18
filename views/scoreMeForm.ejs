@@ -15,17 +15,18 @@
             <!--<p>Welcome to <%= title %></p>-->
             <h1><%= title %></h1>
 
-            <form class="form-horizontal">
+            <form class="form-horizontal" method="POST" action="/score-me">
+                <input type="hidden" name="client" value="web"/>
                 <fieldset>
 
                     <!-- Form Name -->
-                    <legend style="border-bottom:0">Phrase to rate</legend>
+                    <legend style="border-bottom:0">Sentence to rate</legend>
 
                     <!-- Text input-->
                     <div class="control-group">
-                        <label class="control-label" for="phrase"></label>
+                        <label class="control-label" for="sentence"></label>
                         <div class="controls">
-                            <input id="phrase" name="phrase" type="text" placeholder="" class="input-large" required="">
+                            <input id="sentence" name="sentence" type="text" placeholder="" class="input-large" required="">
 
                         </div>
                     </div>

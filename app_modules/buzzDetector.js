@@ -19,4 +19,10 @@ BuzzDetector.prototype.amIBuzzing = function (sentence) {
     return buzzWords.length;
 };
 
+BuzzDetector.prototype.buzzPerTotalwords = function(sentence){
+    var cleanedWords = cleanupUtils.removeStopWords(sentence);
+    var totalBuzz = this.amIBuzzing(sentence);
+    return totalBuzz / cleanedWords.split(' ').length;
+};
+
 module.exports = BuzzDetector;
