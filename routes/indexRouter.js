@@ -31,11 +31,12 @@ router.get('/', function(req, res, next){
 });
 
 router.get('/score-me', function(req, res, next){
-    res.json({score:indexController.receiveSound(req.body.sound)});
+    res.json({score:indexController.scorePhrase(req.body.phrase)});
 });
 
 router.post('/sound', function(req, res, next){
-    res.json({score:indexController.scorePhrase(req.body.phrase)});
+	console.log('files :' + req.files);
+    res.json(indexController.receiveSound(req.body));
 });
 
 router.post('/score-me', function(req, res, next){

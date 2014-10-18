@@ -1,3 +1,4 @@
+var fs = require('fs');
 var SentenceGradeLevel = require('../app_modules/sentenceGradeLevel');
 var buzzDetector = new(require('../app_modules/buzzDetector'))();
 
@@ -10,6 +11,12 @@ IndexController.prototype.scorePhrase = function (sentence) {
 };
 
 IndexController.prototype.receiveSound = function (sound) {
+	console.log('sound='+sound)
+	fs.writeFile("tmp/voice.m4a", sound, {encoding : "binary"}, function(err) {
+		if(err) {
+			console.log(err);
+		}
+	})
     return JSON.stringify({"status": "ok"});
 };
 
