@@ -39,7 +39,8 @@ router.post('/sound', function (req, res, next) {
     form.parse(req, function (err, fields, files) {
         //FIXME: on répond avant la fin des callback. Tester de faire un res.write puis res.end dans les callback ?
         indexController.receiveSound(fields, files, function (result) {
-            var grades = indexController.sentenceGrading(result.text);
+            req.body.sentence = result.text;
+            var grades = indexController.sentenceGrading(req);
             res.json(grades);
         });
     });
