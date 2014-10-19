@@ -5,12 +5,13 @@ var cleanupUtils = new (require('../utils/cleanupUtils.js'))();
 
 var BuzzDetector = function () {
     _.forEach(additionalWords, function (additionalWord) {
-        buzzword.add(additionalWord);
+        buzzword.add(additionalWord.toLowerCase());
     });
 };
 
 BuzzDetector.prototype.amIBuzzing = function (sentence) {
     //diacritics / punctuation removal before ?
+    var sentence = sentence.toLowerCase();
     var buzzPressionsMatches = [];
     _.forEach(additionalWords, function (additionalWord) {
         if (additionalWord.indexOf(' ') > -1) {
