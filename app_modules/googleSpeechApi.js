@@ -8,8 +8,7 @@ var GoogleSpeechApi = function () {
 };
 
 GoogleSpeechApi.prototype.parseGoogleResponse = function (response) {
-    response = '{"result":[]}\r\n{"result":[{"alternative":[{"transcript":"ok on enregistre un texte en moins de 30 secondes pour faire un test épisode devrait suffir"},{"transcript":"ok on enregistre un texte en moins de 30 secondes pour faire un test de épisode devrait suffir"},{"transcript":"ok on enregistre un texte en moins de 30 secondes pour faire un test épisode devrait suffire"},{"transcript":"ok on enregistre un texte en moins de 30 secondes pour faire un test 2 épisode devrait suffir"},{"transcript":"ok on enregistre un text en moins de 30 secondes pour faire un test épisode devrait suffir"}],"final":true}],"result_index":0}'
-
+    //response = '{"result":[]}\r\n{"result":[{"alternative":[{"transcript":"ok on enregistre un texte en moins de 30 secondes pour faire un test épisode devrait suffir"},{"transcript":"ok on enregistre un texte en moins de 30 secondes pour faire un test de épisode devrait suffir"},{"transcript":"ok on enregistre un texte en moins de 30 secondes pour faire un test épisode devrait suffire"},{"transcript":"ok on enregistre un texte en moins de 30 secondes pour faire un test 2 épisode devrait suffir"},{"transcript":"ok on enregistre un text en moins de 30 secondes pour faire un test épisode devrait suffir"}],"final":true}],"result_index":0}'
     console.log("Google API response="+response);
 
     var results = response.split("\r\n");
