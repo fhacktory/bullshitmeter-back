@@ -14,8 +14,6 @@ GoogleSpeechApi.prototype.parseGoogleResponse = function (response) {
     var results = response.split("\r\n");
 
     console.log(results);
-    console.log("res1 = "+results[0]);
-    console.log("res2 = "+results[1]);
 
     var result = JSON.parse(results[1]).result[0].alternative[0].transcript;
     console.log("RESULT > " + result);  
