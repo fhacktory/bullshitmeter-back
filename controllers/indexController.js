@@ -14,7 +14,7 @@ IndexController.prototype.scorePhrase = function (sentence) {
 IndexController.prototype.receiveSound = function (sound, files, callback) {
   var soundPath = files['myUpload']['path'];
   var result = speechApi.readSound(soundPath, function(err, recognizedText) {
-    callback( JSON.stringify({"text": recognizedText}));
+    callback(err, JSON.stringify({"text": recognizedText}));
   });
 };
 
@@ -30,6 +30,9 @@ IndexController.prototype.sentenceGrading = function (req) {
         'flesch-kincaid':fkGrade,
         recognized_text:req.body.sentence
     };
+
+    console.log("gradingDetails = "+gradingDetails);
+
     return gradingDetails;
 };
 
