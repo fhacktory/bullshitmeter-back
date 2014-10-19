@@ -12,11 +12,11 @@ GoogleSpeechApi.prototype.parseGoogleResponse = function (response) {
 
     results = response.split("\r\n");
     result = JSON.parse(results[1]).result[0].alternative[0].transcript
-    console.log("RESULT > "+result);
+    console.log("RESULT > " + result);
     return result;
 };
 
-GoogleSpeechApi.prototype.requestGoogle = function(err, callback){
+GoogleSpeechApi.prototype.requestGoogle = function (err, callback) {
     var self = this;
     exec("curl -X POST --data-binary @'tmp/file.wav' --header 'Content-Type: audio/l16; rate=16000;' 'https://www.google.com/speech-api/v2/recognize?output=json&lang=fr-fr&key=AIzaSyCRup2tofrIDwGQNTM2JD_HXsg0tv-DzzQ'", function (error, stdout, stderr) {
 //        execFile('/usr/bin/curl', ['-X', 'POST', '--data-binary', "@'tmp/file.wav'", '--header', "'Content-Type: audio/l16; rate=16000;'", "'https://www.google.com/speech-api/v2/recognize?output=json&lang=fr-fr&key=AIzaSyCRup2tofrIDwGQNTM2JD_HXsg0tv-DzzQ'"], {}, function(error, stdout, stderr){
@@ -24,8 +24,13 @@ GoogleSpeechApi.prototype.requestGoogle = function(err, callback){
         var isError = stdout.indexOf("<title>Error 403 (Forbidden)") > -1;
         console.log("Called Google API with stdout =" + stdout);
         console.log("is error =" + isError);
+        if (isError) {
+            console.log("403 ... retrying ...")
+            self.requestGoogle(err, callback);
+        } else {
+            callback(stderr, self.parseGoogleResponse(stdout));
 
-        callback(stderr, self.parseGoogleResponse(stdout));
+        }
     });
 };
 
@@ -33,14 +38,14 @@ GoogleSpeechApi.prototype.readSound = function (soundPath, callback) {
     var self = this;
     //convert m4a into wav
     exec("ffmpeg -y -i " + soundPath + " -ar 16000 -acodec pcm_s16le -ac 1 tmp/file.wav", function (error, stdout, stderr) {
-    //execFile('ffmpeg', ['-y', '-i', soundPath, '-ar', '16000', '-acodec', 'pcm_s16le', '-ac', 1, 'tmp/file.wav'], {}, function (error, stdout, stderr) {
+        //execFile('ffmpeg', ['-y', '-i', soundPath, '-ar', '16000', '-acodec', 'pcm_s16le', '-ac', 1, 'tmp/file.wav'], {}, function (error, stdout, stderr) {
         if (stderr) {
             console.log(stderr);
         }
         if (error) {
             console.log(error);
         }
-        self.requestGoogle(function(err, data){
+        self.requestGoogle(function (err, data) {
             callback(err, data);
         });
     });
@@ -65,7 +70,6 @@ GoogleSpeechApi.prototype.readSound = function (soundPath, callback) {
 //
 //        });
 //    });
-
 
 
 };
