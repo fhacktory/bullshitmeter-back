@@ -23,6 +23,7 @@ BuzzDetector.prototype.amIBuzzing = function (sentence) {
     var cleanedWords = cleanupUtils.removeStopWords(sentence);
     var words = cleanedWords.split(' ');
     var buzzWords = _.filter(words, function (word) {
+        console.log("hyperlocal", word, buzzword.is(word));
         return(buzzword.is(word));
     });
     return buzzWords.concat(buzzPressionsMatches);

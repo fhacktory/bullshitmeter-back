@@ -19,16 +19,17 @@ IndexController.prototype.receiveSound = function (sound, files, callback) {
 };
 
 IndexController.prototype.sentenceGrading = function (req) {
-    var fleschKincaid = new SentenceGradeLevel(req.body.sentence);
+    var actualText = JSON.parse(req.body.sentence).text;
+    var fleschKincaid = new SentenceGradeLevel(actualText);
 
-    var buzz = buzzDetector.buzzPerTotalwords(req.body.sentence);
+    var buzz = buzzDetector.buzzPerTotalwords(actualText);
     var fkGrade = fleschKincaid.grade()
     var gradingDetails = {
         buzzwords:buzz.suspects,
         ratio:buzz.ratio,
         grade:Math.min(fkGrade/2 + buzz.ratio*fkGrade, 20),
         'flesch-kincaid':fkGrade,
-        recognized_text:JSON.parse(req.body.sentence).text
+        recognized_text:actualText
     };
 
     console.log("gradingDetails = "+gradingDetails.ratio);
