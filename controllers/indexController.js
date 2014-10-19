@@ -11,10 +11,10 @@ IndexController.prototype.scorePhrase = function (sentence) {
 };
 
 
-IndexController.prototype.receiveSound = function (sound, files) {
+IndexController.prototype.receiveSound = function (sound, files, callback) {
   var soundPath = files['myUpload']['path'];
-  speechApi.readSound(soundPath, function(err, recognizedText) {
-    return JSON.stringify({"text": recognizedText});
+  var result = speechApi.readSound(soundPath, function(err, recognizedText) {
+    callback( JSON.stringify({"text": recognizedText}));
   });
 };
 
