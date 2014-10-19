@@ -28,7 +28,7 @@ IndexController.prototype.sentenceGrading = function (req) {
         ratio:buzz.ratio,
         grade:Math.min(fkGrade/2 + buzz.ratio*fkGrade, 20),
         'flesch-kincaid':fkGrade,
-        recognized_text:req.body.sentence
+        recognized_text:req.body.sentence.text
     };
 
     console.log("gradingDetails = "+gradingDetails);
