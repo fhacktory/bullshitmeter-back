@@ -31,7 +31,11 @@ IndexController.prototype.sentenceGrading = function (req) {
         recognized_text:req.body.sentence.text
     };
 
-    console.log("gradingDetails = "+gradingDetails);
+    console.log("gradingDetails = "+gradingDetails.ratio);
+    console.log("gradingDetails = "+gradingDetails.grade);
+    console.log("gradingDetails = "+gradingDetails['flesch-kincaid']);
+    console.log("gradingDetails = "+gradingDetails.recognized_text);
+
 
     return gradingDetails;
 };
