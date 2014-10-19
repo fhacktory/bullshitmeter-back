@@ -55,6 +55,7 @@ router.post('/sound', function (req, res, next) {
 });
 
 router.post('/score-me', function (req, res, next) {
+    req.body.sentence = JSON.stringify({text:req.body.sentence});
     var gradeData = indexController.sentenceGrading(req);
     if (req.body.client == 'web') {
         res.render('results', {title: config.APP_TITLE, data: gradeData})
